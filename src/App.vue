@@ -1,15 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+	<NavBar />
+	<user-list />
+
+	<BannerPeople />
+	<SubBanner />
+	<MySertifications />
+	<my-experience />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NavBar from './components/NavBar.vue'
+import BannerPeople from './components/BannerPeople.vue'
+import SubBanner from './components/SubBanner.vue'
+import MySertifications from './components/MySertifications.vue'
+import MyExperience from './components/MyExperience.vue'
+import UserList from './components/UserList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    NavBar,
+	BannerPeople,
+	SubBanner,
+	MySertifications,
+    MyExperience,
+	UserList
   }
 }
 </script>
