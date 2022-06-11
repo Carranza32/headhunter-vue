@@ -13,7 +13,7 @@
     <div class="flex flex-col items-center justify-center lg:flex-row">
       <div class="rounded-full border-8 border-primary shadow-xl">
         <img
-          src="../assets/img/blog-author.jpg"
+          src="https://gravatar.com/avatar/bb6ee729a100333f488c7201b0465ff2?s=400&d=robohash&r=x"
           class="h-48 rounded-full sm:h-56"
           alt="author"
         />
@@ -22,7 +22,7 @@
         <h1
           class="text-center font-header text-4xl text-white sm:text-left sm:text-5xl md:text-6xl"
         >
-          Hello I'm Christy Smith!
+          Hola Soy {{user.userName}}!
         </h1>
         <div
           class="flex flex-col justify-center pt-3 sm:flex-row sm:pt-5 lg:justify-start"
@@ -30,7 +30,7 @@
           <div
             class="flex items-center justify-center pl-0 sm:justify-start md:pl-1"
           >
-            <p class="font-body text-lg uppercase text-white">Let's connect</p>
+            <p class="font-body text-lg uppercase text-white">Contactate conmigo</p>
             <div class="hidden sm:block">
               <i class="bx bx-chevron-right text-3xl text-yellow"></i>
             </div>
@@ -38,29 +38,10 @@
           <div
             class="flex items-center justify-center pt-5 pl-2 sm:justify-start sm:pt-0"
           >
-            <a href="/">
-              <i
-                class="bx bxl-facebook-square text-2xl text-white hover:text-yellow"
-              ></i>
-            </a>
-            <a href="/" class="pl-4">
-              <i
-                class="bx bxl-twitter text-2xl text-white hover:text-yellow"
-              ></i>
-            </a>
-            <a href="/" class="pl-4">
-              <i
-                class="bx bxl-dribbble text-2xl text-white hover:text-yellow"
-              ></i>
-            </a>
-            <a href="/" class="pl-4">
+
+            <a :href="user.socialNet" class="pl-4">
               <i
                 class="bx bxl-linkedin text-2xl text-white hover:text-yellow"
-              ></i>
-            </a>
-            <a href="/" class="pl-4">
-              <i
-                class="bx bxl-instagram text-2xl text-white hover:text-yellow"
               ></i>
             </a>
           </div>
@@ -75,6 +56,10 @@
 
 <script>
 export default {
-	
+	props: ['user'],
+	mounted() {
+    // props are exposed on `this`
+		console.log(this.user)
+	}
 }
 </script>

@@ -4,12 +4,12 @@
         <section class="bg-white dark:bg-gray-900">
             <div class="container px-6 py-10 mx-auto">                
                 <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-4">
-                    <div class="flex flex-col items-center p-8 transition-colors duration-200 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
-                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="">
+                    <div v-for="user in users" v-bind:key="user.userId" @click="onShowUser(user)" class="flex flex-col items-center p-8 transition-colors duration-200 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
+                        <img class="object-cover w-32 h-32 rounded-full ring-4 ring-gray-300" src="https://gravatar.com/avatar/bb6ee729a100333f488c7201b0465ff2?s=400&d=robohash&r=x" alt="">
                         
-                        <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">arthur melo</h1>
+                        <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white group-hover:text-white">{{user.userName}}</h1>
                         
-                        <p class="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">design director</p>
+                        <p class="mt-2 text-gray-500 capitalize dark:text-gray-300 group-hover:text-gray-300">{{user.profession}}</p>
                         
                         <div class="flex mt-3 -mx-2">
                             <a href="#" class="mx-2 text-gray-600 dark:text-gray-300 hover:text-gray-500 dark:hover:text-gray-300 group-hover:text-white" aria-label="Reddit">
@@ -48,7 +48,25 @@
 </template>
 
 <script>
+import { get } from '../service/ApiService'
+
 export default {
-	
+	data(){
+		return {
+			users: []
+		}
+	},
+	async mounted(){
+		var response = await get('api/User/GetAll')
+		console.log(response.$values)
+		this.users = response.$values;
+		console.log(this.users)
+	},
+	methods: {
+		onShowUser(user){
+			console.log(user);
+			this.$router.push({ name: 'user', params: { id: user.userId } })
+		}
+	}
 }
 </script>
